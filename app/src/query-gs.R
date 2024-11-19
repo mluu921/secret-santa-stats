@@ -1,13 +1,13 @@
-# library(dplyr)
-# library(googlesheets4)
-# library(pins)
-# library(tidygeocoder)
+library(dplyr)
+library(googlesheets4)
+library(pins)
+library(tidygeocoder)
 
 board <- pins::board_folder('board')
 
 url <- 'https://docs.google.com/spreadsheets/d/1Lp6XU1Uk4lnROuFmwFCqwziw1u1f5MWKE1MSZ0Ddjfc/edit?gid=1789879022#gid=1789879022'
 
-# -------------------------------------------------------------------------
+# -------------------------------------------1------------------------------
 
 query_gs <- \(url) {
   
