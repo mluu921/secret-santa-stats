@@ -1,0 +1,10 @@
+file: simulation-results.rds
+file_size: 3460160
+pin_hash: bfb6f4812549ef80
+type: rds
+title: 'simulation-results: a pinned 1400000 x 8 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20241117T160150Z
+api_version: 1
