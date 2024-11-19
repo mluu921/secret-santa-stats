@@ -4,5 +4,3 @@ shinylive::export("C:\\Users\\mluu9\\Documents\\secret-santa-stats\\app", 'C:\\U
 
 # shinylive::assets_cleanup()
 # shinylive::assets_download()
-
-httpuv::runStaticServer('docs')
