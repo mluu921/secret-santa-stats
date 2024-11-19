@@ -1,0 +1,10 @@
+file: processed-data.rds
+file_size: 1120
+pin_hash: 2b417b4e48ad70e2
+type: rds
+title: 'processed-data: a pinned 72 x 12 data frame'
+description: ~
+tags: ~
+urls: ~
+created: 20241119T121308Z
+api_version: 1

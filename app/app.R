@@ -9,16 +9,16 @@ library(tidyr)
 library(purrr)
 library(gtExtras)
 
-# source('src/query-gs.R')
-source('src/utils.R')
-source('app/src/sims.R')
-source('src/value-boxes.R')
-source('src/mod-network-vis.R')
-source('src/tbl-probs-repeat-match.R')
-
 board <- pins::board_folder('board')
 
 data <- pins::pin_read(board, 'processed-data')
+
+# source('src/query-gs.R')
+source('src/utils.R')
+# source('app/src/sims.R')
+source('src/value-boxes.R')
+source('src/mod-network-vis.R')
+source('src/tbl-probs-repeat-match.R')
 
 tbl_prob_repeat_match <- pins::pin_read(board, 'tbl-prob-repeat-non-repeat')
 
