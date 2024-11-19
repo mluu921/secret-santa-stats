@@ -26,7 +26,7 @@ tbl_prob_repeat_match <- pins::pin_read(board, 'tbl-prob-repeat-non-repeat')
 tbl_repeat_match_leaderboard <- pins::pin_read(board, 'tbl-repeat-match-leaderboard')
 
 card_network <- card(
-  card_header('WHO MATCHED WITH WHO?'),
+  card_header('SECRET SANTA CONNECTIONS'),
   full_screen = TRUE,
   layout_sidebar(
     sidebar = sidebar(
@@ -41,7 +41,7 @@ card_network <- card(
 )
 
 card_tbl_repeat_matches <- card(
-  card_header('HOW LIKELY ARE YOU GOING TO HAVE A REPEAT MATCH?'),
+  card_header('SECRET SANTA Déjà VU'),
   full_screen = TRUE,
   tbl_prob_repeat_match,
   card_footer(
@@ -52,7 +52,7 @@ card_tbl_repeat_matches <- card(
 )
 
 card_tbl_repeat_match_leader_board <- card(
-  card_header('REPEATED MATCH LEADERBOARD'),
+  card_header('Hall of Repeated Matches'),
   full_screen = TRUE,
   tbl_repeat_match_leaderboard,
   card_footer(
