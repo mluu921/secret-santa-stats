@@ -27,7 +27,7 @@ mod_server_vis_network <- function(id, data) {
       })
       
       output$n <- networkD3::renderForceNetwork({
-        create_network_viz(filtered(), 100, -80)
+        create_network_viz(filtered(), 100, -50)
       })
       
     }

@@ -21,7 +21,7 @@ vb_ss_since <- bslib::value_box(
 
 vb_gifts_exchanged <- bslib::value_box(
   title = 'GIFTS EXCHANGED TO DATE',
-  value = 50,
+  value = nrow(data),
   theme = value_box_theme(bg = '#FFD700'),
   showcase = fa('champagne-glasses', height = '50px')
 )
