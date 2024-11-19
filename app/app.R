@@ -13,14 +13,17 @@ board <- pins::board_folder('board')
 
 data <- pins::pin_read(board, 'processed-data')
 
-# source('src/query-gs.R')
 source('src/utils.R')
-# source('app/src/sims.R')
 source('src/value-boxes.R')
 source('src/mod-network-vis.R')
-source('src/tbl-probs-repeat-match.R')
+
+# source('app/src/query-gs.R')
+# source('app/src/tbl-probs-repeat-match.R')
+# source('app/src/most-frequent-match-leaderboard.R')
+# source('app/src/sims.R')
 
 tbl_prob_repeat_match <- pins::pin_read(board, 'tbl-prob-repeat-non-repeat')
+tbl_repeat_match_leaderboard <- pins::pin_read(board, 'tbl-repeat-match-leaderboard')
 
 card_network <- card(
   card_header('WHO MATCHED WITH WHO?'),
@@ -48,6 +51,18 @@ card_tbl_repeat_matches <- card(
   )
 )
 
+card_tbl_repeat_match_leader_board <- card(
+  card_header('REPEATED MATCH LEADERBOARD'),
+  full_screen = TRUE,
+  tbl_repeat_match_leaderboard,
+  card_footer(
+    HTML(
+      readLines(paste0('src/repeat-match-leaderboard-description')) |> paste0(collapse = '<br>')
+    ) 
+  )
+)
+
+
 ui <- bslib::page_navbar(
   title = 'FAM BAM SECRET SANTA STATS!',
   padding = 10,
@@ -68,8 +83,14 @@ ui <- bslib::page_navbar(
         readLines(paste0('src/home-page-intro')) |> paste0(collapse = '<br>')
       ))
   ),
-  nav_panel(title = 'STATS',
-            layout_column_wrap(card_network, card_tbl_repeat_matches))
+  nav_panel(
+    title = 'STATS',
+    layout_column_wrap(
+      card_tbl_repeat_match_leader_board,
+      card_network,
+      card_tbl_repeat_matches
+    )
+  )
 )
 
 server <- function(input, output, session) {

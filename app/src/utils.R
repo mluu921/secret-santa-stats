@@ -15,6 +15,26 @@ nth_annual_secret_santa <- \() {
   
 }
 
+generate_text_of_most_frequent_matches <- \(data) {
+  
+  t <- data |>
+    group_by(participants_giver, participants_receiver) |>
+    summarise(year = paste0(year, collapse = ', '), n = n(), .groups = 'drop') |>
+    filter(n != 1)
+  
+  number_of_times <- glue::glue_data(
+    t,
+    '{participants_giver} has given to {participants_receiver}, {n} times ({year})'
+  ) |> glue::glue_collapse(sep = '. ', last = ' and ')
+  
+  most_frequent_giver <- glue::glue_collapse(t$participants_giver, sep = ', ', last = ' and ')
+  
+  res <- glue::glue('{most_frequent_giver} had the most repeated matches. {number_of_times}.')
+  
+  res
+  
+}
+
 create_network_viz <- \(data, link_distance, charge) {
   plot_data <- data |>
     select(i, participants_giver, participants_receiver) |>

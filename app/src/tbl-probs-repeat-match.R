@@ -1,8 +1,4 @@
-library(dplyr)
-library(gt)
-library(pins)
-
-board <- pins::board_folder('board')
+board <- pins::board_folder('app/board')
 
 data <- pins::pin_read(board, 'processed-data')
 
