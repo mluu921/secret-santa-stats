@@ -1,4 +1,4 @@
-board <- pins::board_folder('app/board')
+board <- pins::board_folder('board')
 
 data <- pins::pin_read(board, 'processed-data')
 
@@ -8,6 +8,8 @@ t <- data |>
   filter(n != 1) |> 
   group_by(participants_giver, participants_receiver, n) |> 
   summarise(year = glue::glue_collapse(year, sep = ', ', last = ' and ' ), .groups = 'drop')
+
+t$rank <- rank(t$n, ties.method = 'min')
 
 generate_match_stories_with_emojis <- function(data) {
   # Ensure the data has the required columns
@@ -45,7 +47,9 @@ results <- generate_match_stories_with_emojis(t)
 
 out <- results |> 
   as_tibble() |> 
+  mutate(rank = t$rank, .before = value) |> 
   gt() |> 
-  cols_label(value = 'LEADER BOARD')
+  cols_label(value = 'LEADER BOARD',
+             rank = '')
 
 pins::pin_write(board, out, 'tbl-repeat-match-leaderboard', type = 'rds')
