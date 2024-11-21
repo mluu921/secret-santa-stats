@@ -64,7 +64,7 @@ card_tbl_repeat_match_leader_board <- card(
 
 
 ui <- bslib::page_navbar(
-  title = 'FAM BAM SECRET SANTA STATS!',
+  title = 'FAM BAM SECRET SANTA HAM STATS!',
   padding = 10,
   nav_panel(
     title = 'HOME',
