@@ -17,10 +17,10 @@ source('src/utils.R')
 source('src/value-boxes.R', local = TRUE)
 source('src/mod-network-vis.R')
 
-# source('app/src/query-gs.R')
-# source('app/src/tbl-probs-repeat-match.R')
-# source('app/src/most-frequent-match-leaderboard.R')
-# source('app/src/sims.R')
+# source('src/query-gs.R')
+# source('src/tbl-probs-repeat-match.R')
+# source('src/most-frequent-match-leaderboard.R')
+# source('src/sims.R')
 
 tbl_prob_repeat_match <- pins::pin_read(board, 'tbl-prob-repeat-non-repeat')
 tbl_repeat_match_leaderboard <- pins::pin_read(board, 'tbl-repeat-match-leaderboard')
@@ -52,7 +52,7 @@ card_tbl_repeat_matches <- card(
 )
 
 card_tbl_repeat_match_leader_board <- card(
-  card_header('Hall of Repeated Matches'),
+  card_header('HALL OF REPEATED MATCHES'),
   full_screen = TRUE,
   tbl_repeat_match_leaderboard,
   card_footer(
