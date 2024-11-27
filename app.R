@@ -8,6 +8,10 @@ library(igraph)
 library(tidyr)
 library(purrr)
 library(gtExtras)
+library(shinychat)
+library(purrr)
+library(elmer)
+library(readr)
 
 board <- pins::board_folder('board')
 
@@ -62,6 +66,22 @@ card_tbl_repeat_match_leader_board <- card(
   )
 )
 
+card_intro <- card(
+  card_header('FAM BAM SECRET SANTA'),
+  HTML(
+    readLines(paste0('src/home-page-intro')) |> paste0(collapse = '<br>')
+  ))
+
+card_ask_santa <- card(
+  card_header('🎄 FAM BAM SECRET SANTA HAM SECRET SANTA ELF! 🎁'),
+  full_screen = TRUE,
+  chat_ui("chat", messages = "Hello! I'm the knowledgeable FAM BAM SECRET SANTA HAM secret santa elf here to answer your questions!"),
+  card_footer(
+    HTML(
+      readLines(paste0('src/secret-santa-elf-description')) |> paste0(collapse = '<br>')
+    ) 
+  )
+)
 
 ui <- bslib::page_navbar(
   title = 'FAM BAM SECRET SANTA HAM STATS!',
@@ -77,11 +97,10 @@ ui <- bslib::page_navbar(
       vb_ss_since,
       vb_gifts_exchanged,
     ),
-    card_intro <- card(
-      card_header('FAM BAM SECRET SANTA'),
-      HTML(
-        readLines(paste0('src/home-page-intro')) |> paste0(collapse = '<br>')
-      ))
+    layout_column_wrap(
+      card_intro,
+      card_ask_santa
+    )
   ),
   nav_panel(
     title = 'STATS',
@@ -96,6 +115,13 @@ ui <- bslib::page_navbar(
 server <- function(input, output, session) {
   
   mod_server_vis_network('vis_network', data)
+  
+  chat <- elmer::chat_openai(system_prompt = read_lines('src/ask-santa-system-prompt') |> paste0(collapse = ' '))
+  
+  observeEvent(input$chat_user_input, {
+    stream <- chat$stream_async(input$chat_user_input)
+    chat_append("chat", stream)
+  })
   
 }
 
